@@ -37,7 +37,7 @@ public class ChangeGravity : MonoBehaviour
         Position += 0.0001f;
 
         //回転
-        transform.rotation = Quaternion.Euler(Rotation, 0.0f, 0.0f);
+        transform.rotation = Quaternion.Euler(0.0f, 0.0f, Rotation);
 
         //反転していない重力
         if (IsReverse == false)
