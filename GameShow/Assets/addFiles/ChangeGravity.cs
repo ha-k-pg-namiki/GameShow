@@ -5,7 +5,14 @@ using UnityEngine;
 public class ChangeGravity : MonoBehaviour
 {
     //重力の大きさ
-    float Gravity = 7.0f;
+    float Gravity = 200.0f;
+
+    //移動
+    private float Position;
+
+    //回転
+    [SerializeField]
+    private float Rotation;
 
     //重力が反転しているかどうか
     bool IsReverse = false;
@@ -13,7 +20,7 @@ public class ChangeGravity : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+       
     }
 
     // Update is called once per frame
@@ -23,6 +30,14 @@ public class ChangeGravity : MonoBehaviour
         //{
         //    Physics.gravity = new Vector3(0, 10, 0);
         //}
+
+
+        transform.Translate(0f, 0f, Position);
+
+        Position += 0.0001f;
+
+        //回転
+        transform.rotation = Quaternion.Euler(Rotation, 0.0f, 0.0f);
 
         //反転していない重力
         if (IsReverse == false)
@@ -41,6 +56,7 @@ public class ChangeGravity : MonoBehaviour
         //反転ギミックと離れた瞬間の処理
         if (other.gameObject.tag == "ChangeGravity")
         {
+            Rotation += 180.0f;
             //反転していないなら反転させる
             if (IsReverse == false)
             {
