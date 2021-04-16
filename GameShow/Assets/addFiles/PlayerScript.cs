@@ -5,10 +5,14 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
     //重力の大きさ
-    float Gravity = 120.0f;
+    private float Gravity = 120.0f;
 
     //移動
+    [SerializeField]
     private Vector3 Position;
+
+    [SerializeField]
+    private float Speed = 0.0001f;
 
     //回転
     [SerializeField]
@@ -19,6 +23,7 @@ public class PlayerScript : MonoBehaviour
     bool IsReverse = false;
 
     private Rigidbody rb;//  Rigidbodyを使うための変数
+
     [SerializeField]
     private bool Grounded;//  地面に着地しているか判定する変数
     public float Jumppower;//  ジャンプ力
@@ -67,12 +72,13 @@ public class PlayerScript : MonoBehaviour
 
         transform.Translate(Position.x, Position.y, Position.z);
 
-        Position.z += 0.0001f;
+        Position.z += Speed;
 
         //回転
         transform.rotation = Quaternion.Euler(Rotation.x, Rotation.y, Rotation.z);
     }
 
+    //Playeyと
     private void OnTriggerExit(Collider other)
     {
         //反転ギミックと離れた瞬間の処理
@@ -94,15 +100,30 @@ public class PlayerScript : MonoBehaviour
                 IsReverse = false;
             }
         }
+
+
+
     }
 
-    void OnCollisionEnter(Collision other)//  地面に触れた時の処理
+    //当たり判定
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.tag == "Ground")//  もしGroundというタグがついたオブジェクトに触れたら、
+        if (collision.gameObject.tag == "Ground")//  もしGroundというタグがついたオブジェクトに触れたら、
         {
             //Gravity = 100.0f;
 
             Grounded = true;//  Groundedをtrueにする
+            
         }
+
+
+        if (collision.gameObject.tag == "SpeedUp")
+        {
+            Speed = 0.0005f;
+        }
+
     }
+
+   
+
 }
