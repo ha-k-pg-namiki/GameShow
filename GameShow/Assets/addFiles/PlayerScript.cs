@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChangeGravity : MonoBehaviour
+public class PlayerScript : MonoBehaviour
 {
     //重力の大きさ
     float Gravity = 120.0f;
@@ -15,6 +15,7 @@ public class ChangeGravity : MonoBehaviour
     private Vector3 Rotation;
 
     //重力が反転しているかどうか
+    [SerializeField]
     bool IsReverse = false;
 
     private Rigidbody rb;//  Rigidbodyを使うための変数
@@ -36,12 +37,31 @@ public class ChangeGravity : MonoBehaviour
         //    Physics.gravity = new Vector3(0, 10, 0);
         //}
 
-        if (Grounded == true)//  もし、Groundedがtrueなら、
+        
+
+        //反転していない重力
+        if (IsReverse == false)
         {
+            Physics.gravity = new Vector3(0, -Gravity, 0);
+
+            if (Grounded == true)//  もし、Groundedがtrueなら、
+            {
+                if (Input.GetKeyDown(KeyCode.Space))//  もし、スペースキーがおされたなら、  
+                {
+                    Grounded = false;//  Groundedをfalseにする
+                    rb.AddForce(Vector3.up * Jumppower);//  上にJumpPower分力をかける
+                }
+            }
+        }
+        //反転している重力
+        if (IsReverse == true)
+        {
+            Physics.gravity = new Vector3(0, Gravity, 0);
+
             if (Input.GetKeyDown(KeyCode.Space))//  もし、スペースキーがおされたなら、  
             {
                 Grounded = false;//  Groundedをfalseにする
-                rb.AddForce(Vector3.up * Jumppower);//  上にJumpPower分力をかける
+                rb.AddForce(Vector3.up * -Jumppower);//  上にJumpPower分力をかける
             }
         }
 
@@ -51,17 +71,6 @@ public class ChangeGravity : MonoBehaviour
 
         //回転
         transform.rotation = Quaternion.Euler(Rotation.x, Rotation.y, Rotation.z);
-
-        //反転していない重力
-        if (IsReverse == false)
-        {
-            Physics.gravity = new Vector3(0, -Gravity, 0);
-        }
-        //反転している重力
-        if (IsReverse == true)
-        {
-            Physics.gravity = new Vector3(0, Gravity, 0);
-        }
     }
 
     private void OnTriggerExit(Collider other)
