@@ -209,11 +209,23 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 150456434}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 5, z: 0}
+--- !u!114 &150456437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150456434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8c35cbbf368f9447a799f5e2657aa73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &208792766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1085,10 +1097,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Position: {x: 0, y: 0, z: 0}
   Speed: 0.0001
+  speedUpStep: 1
   Rotation: {x: 0, y: 0, z: 0}
   IsReverse: 0
   Grounded: 0
-  Jumppower: 1500
+  jumpPower: 0
 --- !u!54 &1416685650
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1244,6 +1257,11 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 2d0ebd93ac9ab4c4e97d6beece2debb7,
         type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 2d0ebd93ac9ab4c4e97d6beece2debb7,
+        type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []

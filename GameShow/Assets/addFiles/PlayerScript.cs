@@ -7,12 +7,17 @@ public class PlayerScript : MonoBehaviour
     //重力の大きさ
     private float Gravity = 120.0f;
 
-    //移動
+    //座標
     [SerializeField]
     private Vector3 Position;
 
+    //スピード
     [SerializeField]
     private float Speed = 0.0001f;
+
+    //スピードアップ段階
+    [SerializeField]
+    private int speedUpStep = 1;
 
     //回転
     [SerializeField]
@@ -26,7 +31,8 @@ public class PlayerScript : MonoBehaviour
 
     [SerializeField]
     private bool Grounded;//  地面に着地しているか判定する変数
-    public float Jumppower;//  ジャンプ力
+
+    public float jumpPower;//  ジャンプ力
 
     // Start is called before the first frame update
     void Start()
@@ -54,7 +60,7 @@ public class PlayerScript : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Space))//  もし、スペースキーがおされたなら、  
                 {
                     Grounded = false;//  Groundedをfalseにする
-                    rb.AddForce(Vector3.up * Jumppower);//  上にJumpPower分力をかける
+                    rb.AddForce(Vector3.up * jumpPower);//  上にJumpPower分力をかける
                 }
             }
         }
@@ -66,7 +72,7 @@ public class PlayerScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))//  もし、スペースキーがおされたなら、  
             {
                 Grounded = false;//  Groundedをfalseにする
-                rb.AddForce(Vector3.up * -Jumppower);//  上にJumpPower分力をかける
+                rb.AddForce(Vector3.up * -jumpPower);//  上にJumpPower分力をかける
             }
         }
 
@@ -119,11 +125,20 @@ public class PlayerScript : MonoBehaviour
 
         if (collision.gameObject.tag == "SpeedUp")
         {
-            Speed = 0.0005f;
+            SpeedUpStep(speedUpStep += 1);
         }
 
     }
 
-   
+   private void SpeedUpStep(int step)
+    {
+        switch(step)
+        {
+            case 1: Speed = 0.0001f; break;
+            case 2: Speed = 0.0002f; break;
+            case 3: Speed = 0.0003f; break;
+            case 4: Speed = 0.0004f; break;
+        }
+    }
 
 }
