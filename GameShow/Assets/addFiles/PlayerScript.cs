@@ -43,13 +43,7 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if(Input.GetKeyDown(KeyCode.A))
-        //{
-        //    Physics.gravity = new Vector3(0, 10, 0);
-        //}
-
         
-
         //反転していない重力
         if (IsReverse == false)
         {
