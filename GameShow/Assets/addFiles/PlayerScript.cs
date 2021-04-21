@@ -13,11 +13,11 @@ public class PlayerScript : MonoBehaviour
 
     //スピード
     [SerializeField]
-    private float Speed = 0.0001f;
+    private float Speed;
 
     //スピードアップ段階
     [SerializeField]
-    private int speedUpStep = 1;
+    private int speedUpStep;
 
     //回転
     [SerializeField]
@@ -32,7 +32,8 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     private bool Grounded;//  地面に着地しているか判定する変数
 
-    public float jumpPower;//  ジャンプ力
+    [SerializeField]
+    private float jumpPower;//  ジャンプ力
 
     // Start is called before the first frame update
     void Start()
@@ -43,13 +44,13 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if(Input.GetKeyDown(KeyCode.A))
-        //{
-        //    Physics.gravity = new Vector3(0, 10, 0);
-        //}
+
+        }
+
+    private void FixedUpdate()
+    {
 
         
-
         //反転していない重力
         if (IsReverse == false)
         {
@@ -69,19 +70,26 @@ public class PlayerScript : MonoBehaviour
         {
             Physics.gravity = new Vector3(0, Gravity, 0);
 
-            if (Input.GetKeyDown(KeyCode.Space))//  もし、スペースキーがおされたなら、  
+            if (Grounded == true)//  もし、Groundedがtrueなら、
             {
-                Grounded = false;//  Groundedをfalseにする
-                rb.AddForce(Vector3.up * -jumpPower);//  上にJumpPower分力をかける
+
+                if (Input.GetKeyDown(KeyCode.Space))//  もし、スペースキーがおされたなら、  
+                {
+                    Grounded = false;//  Groundedをfalseにする
+                    rb.AddForce(Vector3.up * -jumpPower);//  上にJumpPower分力をかける
+                }
             }
         }
 
-        transform.Translate(Position.x, Position.y, Position.z);
+        SpeedUpStep(speedUpStep);
+        
+        transform.Translate(Position.x, Position.y, Position.z += Speed);
 
-        Position.z += Speed;
+        //Position.z += Speed;
 
         //回転
         transform.rotation = Quaternion.Euler(Rotation.x, Rotation.y, Rotation.z);
+
     }
 
     //Playeyと
@@ -126,19 +134,26 @@ public class PlayerScript : MonoBehaviour
 
         if (collision.gameObject.tag == "SpeedUp")
         {
-            SpeedUpStep(speedUpStep += 1);
+            speedUpStep = 2;
+        }
+
+
+        if (collision.gameObject.tag == "SpeedDown")
+        {
+            speedUpStep = 1;
         }
 
     }
+
 
    private void SpeedUpStep(int step)
     {
         switch(step)
         {
-            case 1: Speed = 0.0001f; break;
-            case 2: Speed = 0.0002f; break;
-            case 3: Speed = 0.0003f; break;
-            case 4: Speed = 0.0004f; break;
+            case 1: Speed = 0.0002f; break;
+            case 2: Speed = 0.0004f; break;
+            case 3: Speed = 0.0008f; break;
+            case 4: Speed = 0.001f; break;
         }
     }
 
