@@ -6,6 +6,8 @@ TagManager:
   tags:
   - ChangeGravity
   - Ground
+  - SpeedUp
+  - SpeedDown
   layers:
   - Default
   - TransparentFX
