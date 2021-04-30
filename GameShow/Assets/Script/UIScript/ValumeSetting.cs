@@ -7,71 +7,47 @@ using UnityEngine.Audio;
 
 public class ValumeSetting : MonoBehaviour
 {
-    [SerializeField] private GameObject ValumeSettings;
-
-    [SerializeField] private AudioMixerSnapshot Snapshot;
-    [SerializeField] private AudioMixerSnapshot OptionSnapshot;
-
+    [Header("使用するAudioMixer")]
     [SerializeField] private AudioMixer audioMixer;
-
-    //[SerializeField] private AudioClip[] BGMClips;
-    //[SerializeField] private AudioSource audioSourceBGM;
-
-    [SerializeField] private AudioClip SE01;
-    AudioSource audioSource;
-
-
-
-
-
-
+    [Header("設定確認用SE")]
+    [SerializeField] private AudioClip Decide;
+    [Header("BGM、SEそれぞれのAudioSource")]
+    [Tooltip("AudioSourceはすべて同じコンポーネント名でMain CameraにComponentされていますが、" +
+        "違うAudio Clipをそれぞれ別に使用する場合はそれぞれのAudioSourceをアタッチしてください。")]
+    [SerializeField] private AudioSource BGMAudioSource;
+    [SerializeField] private AudioSource SEAudioSource;
+    [Header("BGM、SEそれぞれの音量調節用SliderUI")]
     [SerializeField] private Slider BGMSlider;
+    [SerializeField] private Slider SESlider;
 
 
-    
+    //クリックすると設定確認用SEを１度再生する
+    public void OnClickPlaySE()
+    {
+        SEAudioSource.PlayOneShot(Decide);
+    }
+
+    //BGMスライダーの値にAudioMixerのBGMのボリュームを連動させる
+    public void AdjustmentBGM(float volume)
+    {
+        audioMixer.SetFloat("BGMVol", volume);
+    }
+
+    //SEスライダーの値にAudioMixerのSEのボリュームを連動させる
+    public void AdjustmentSE(float volume)
+    {
+        audioMixer.SetFloat("SEVol", volume);
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey (KeyCode.I))
-        {
-            audioSource.PlayOneShot(audioSource.clip);
-        }
-
-        if (ValumeSettings.activeSelf)
-        {
-            OptionSnapshot.TransitionTo(0.01f);
-        }
-        else
-        {
-            Snapshot.TransitionTo(0.01f);
-        }
-
-
 
     }
-
-
-    public void SetMaster(float volume)
-    {
-        audioMixer.SetFloat("MasterVol", volume);
-    }
-
-    public void SetBGM(float volume)
-    {
-        audioMixer.SetFloat("BGMVol", volume);
-    }
-
-    public void SetSE(float volume)
-    {
-        audioMixer.SetFloat("SEVol", volume);
-    }
-
-
 }
