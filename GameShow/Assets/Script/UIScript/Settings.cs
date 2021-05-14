@@ -8,8 +8,12 @@ public class Settings : MonoBehaviour
 {
     [Header("設定画面を開くためのボタン")]
     [SerializeField] private GameObject OpenSettingsButton;
+    [Header("設定画面を閉じるためのボタン")]
+    [SerializeField] private GameObject CloseSettingsButton;
     [Header("表示したい設定UIオブジェクト")]
     [SerializeField] private GameObject SettingsBoard;
+    [Header("非表示したい設定UIオブジェクト")]
+    [SerializeField] private GameObject PausePanel;
     [Header("各種設定UIに切り替えるためのボタン")]
     [SerializeField] private GameObject     VolumeButton;
     [SerializeField] private GameObject BrightnessButton;
@@ -126,7 +130,6 @@ public class Settings : MonoBehaviour
                 state = SettingsState.Volume;
                 SettingsBoard.SetActive(false);
                 OpenSettingsButton.SetActive(true);
-                Time.timeScale = 1.0f;
 
                 HelpSetting.SetActive(true);
 
@@ -144,13 +147,16 @@ public class Settings : MonoBehaviour
             state = SettingsState.Volume;
             ChangeSettings();
 
-            SettingsBoard.SetActive(true);
             OpenSettingsButton.SetActive(false);
+            CloseSettingsButton.SetActive(true);
+            PausePanel.SetActive(false);
+
+            SettingsBoard.SetActive(true);
+            VolumeSetting.SetActive(true);
+
             BrightnessSetting.SetActive(false);
             DisplaySetting.SetActive(false);
             HelpSetting.SetActive(false);
-
-            //Time.timeScale = 0.0f;
         }
     }
 
@@ -159,12 +165,18 @@ public class Settings : MonoBehaviour
     {
         if (SettingsBoard.activeInHierarchy == true)
         {
-            SettingsBoard.SetActive(false);
             OpenSettingsButton.SetActive(true);
+            CloseSettingsButton.SetActive(false);
+            PausePanel.SetActive(true);
+
+            SettingsBoard.SetActive(false);
+
+            VolumeSetting.SetActive(false);
+            BrightnessSetting.SetActive(false);
+            DisplaySetting.SetActive(false);
+            HelpSetting.SetActive(false);
 
             RestoreState();
-
-            //Time.timeScale = 1.0f;
         }
     }
 

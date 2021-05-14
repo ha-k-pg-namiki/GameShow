@@ -7,6 +7,7 @@ public class Pause : MonoBehaviour
     //ポーズをした際に影響を受けるUI
     [SerializeField] private GameObject HPGauge;
     [SerializeField] private GameObject ScoreBoard;
+    [SerializeField] private GameObject InsideOutPanel;
     //ポーズ画面をアクティブにするためのボタン
     [SerializeField] private GameObject PauseOpen;
     //ポーズしたときに表示するPauseUI
@@ -19,10 +20,23 @@ public class Pause : MonoBehaviour
         HPGauge.SetActive(false);
         ScoreBoard.SetActive(false);
         PauseOpen.SetActive(false);
+        InsideOutPanel.SetActive(false);
 
         PausePanel.SetActive(true);
 
         Time.timeScale = 0.0f;
+    }
+
+    public void OnClickCloseButton()
+    {
+        HPGauge.SetActive(true);
+        ScoreBoard.SetActive(true);
+        PauseOpen.SetActive(true);
+        InsideOutPanel.SetActive(true);
+
+        PausePanel.SetActive(false);
+
+        Time.timeScale = 1.0f;
     }
 
     // Start is called before the first frame update

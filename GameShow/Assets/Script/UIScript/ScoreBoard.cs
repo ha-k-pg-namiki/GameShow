@@ -8,6 +8,8 @@ public class ScoreBoard : MonoBehaviour
     //スコア表示用テキストオブジェクトを設定
     [SerializeField] private Text text;
 
+    [SerializeField] private GameObject Pause;
+
     //スコアとして表示する各桁のUI
     #region SCORE_UI
     [Header("スコアの各桁のUI")]
@@ -25,7 +27,6 @@ public class ScoreBoard : MonoBehaviour
     [SerializeField] private int ScoreUP;
     [Header("スコア減少アイテムを取得した際の減少スコア")]
     [SerializeField] private int ScoreDown;
-
 
 
 
@@ -181,9 +182,17 @@ public class ScoreBoard : MonoBehaviour
 
         ChangeUI10m();
 
+        PlayerPrefs.SetInt("SCORE", score);
+        PlayerPrefs.Save();
+
     }
 
 
+    //public int ScoreProp
+    //{
+    //    get { return this.score; }
+    //    private set { this.score = value; }
+    //}
 
     
 
@@ -193,16 +202,23 @@ public class ScoreBoard : MonoBehaviour
     void Start()
     {
         //スコアを初期化
-        score = PlayerPrefs.GetInt("SCORE", 0);
-        PlayerPrefs.DeleteKey("SCORE");
-
+        score = 0;
+        PlayerPrefs.SetInt("SCORE", score);
     }
     // Update is called once per frame
     void Update()
     {
-        score += 1;
 
-        text.text = "SCORE:" + score;
+        if (Pause.activeSelf == true)
+        {
+            score += 0;
+        }
+        else if (Pause.activeSelf == false)
+        {
+            score += 1;
+        }
+
+        //text.text = "SCORE:" + score;
 
         DiscrimAndChangeUI();
 
