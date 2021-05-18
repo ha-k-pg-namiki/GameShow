@@ -8,6 +8,8 @@ TagManager:
   - Ground
   - SpeedUp
   - SpeedDown
+  - ScoreUp
+  - HPRecover
   layers:
   - Default
   - TransparentFX

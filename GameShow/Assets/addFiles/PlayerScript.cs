@@ -35,17 +35,58 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     private float jumpPower;//  ジャンプ力
 
+    //======================================================
+    //coding by namiki
+
+    //ヒエラルキーのEventSystem
+    [SerializeField]private GameObject EventSystem;
+
+    //ScoreBoardスクリプトを使用するための変数
+    private ScoreBoard ScoreBoardScript;
+    //HPGaugeスクリプトを使用するための変数
+    private HPGauge HPGaugeScript;
+
+    //リザルトシーンで使用する移動距離を計測する変数
+    private int PlayerDistance;
+    //プレイヤーの座標を取得するための変数
+    Transform PlayerTransform;
+
+    //======================================================
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();//  rbにRigidbodyの値を代入する
+
+        //======================================================
+        //coding by namiki
+
+        //変数にScoreBoardスクリプトを代入
+        ScoreBoardScript = EventSystem.GetComponent<ScoreBoard>();
+        //変数にHPGaugeスクリプトを代入
+        HPGaugeScript = EventSystem.GetComponent<HPGauge>();
+        //PlayerDistanceを初期化
+        PlayerDistance = 0;
+        //プレイヤーの位置情報を取得
+        PlayerTransform = this.transform;
+
+        //======================================================
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        //======================================================
+        //coding by namiki
 
-        }
+        //プレイヤーの位置情報を座標に変換、更新
+        Vector3 PlayerPos = PlayerTransform.position;
+        //プレイヤーのZ軸座標をint型に変換し、PlayerDistance変数に代入
+        PlayerDistance = (int)PlayerPos.z;
+
+        //======================================================
+    }
 
     private void FixedUpdate()
     {
@@ -143,6 +184,22 @@ public class PlayerScript : MonoBehaviour
             speedUpStep = 1;
         }
 
+        //======================================================
+        //coding by namiki
+        
+        //HPRecoverタグを持つオブジェクトに衝突した際にGetHPRecoverItem関数を行う
+        if (collision.gameObject.tag == "HPRecover")
+        {
+            HPGaugeScript.GetHPRecoverItem();
+        }
+
+        //ScoreUpタグを持つオブジェクトに衝突した際にGetScoreUpItem関数を行う
+        if (collision.gameObject.tag == "ScoreUp")
+        {
+            ScoreBoardScript.GetScoreUpItem();
+        }
+        //======================================================
+
     }
 
 
@@ -156,5 +213,16 @@ public class PlayerScript : MonoBehaviour
             case 4: Speed = 0.001f; break;
         }
     }
+
+    //======================================================
+    //coding by namiki
+    public int GetDistance
+    {
+        get
+        {
+            return PlayerDistance;
+        }
+    }
+    //======================================================
 
 }

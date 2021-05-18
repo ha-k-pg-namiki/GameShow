@@ -13,13 +13,15 @@ public class HPGauge : MonoBehaviour
     //HPの減少量
     [Header("HP減少量")]
     [SerializeField] private float DecreaseHP;
+    //HPの増加量
+    [Header("HP増加量")]
+    [SerializeField] private float IncreaseHP;
     //罠によるHPの減少量
     [Header("罠によるダメージ量")]
     [SerializeField] private float DecreaseHPByTrap;
 
     //HPの現在値
     private float currentHP;
-
 
     // Start is called before the first frame update
     void Start()
@@ -30,14 +32,14 @@ public class HPGauge : MonoBehaviour
         //HPの現在値を最大値に変更
         currentHP = maxHP;
 
-        //減少HPをHP最大値等と単位をそろえるために行う
+        //減少HPをHP最大値等と単位をそろえるために行う処理
         DecreaseHP /= 100;
-
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        //HPの減少を行う
         if (currentHP >= 0)
         {
             currentHP -= DecreaseHP;
@@ -45,6 +47,10 @@ public class HPGauge : MonoBehaviour
 
         //HPゲージ本体にHP状況を反映
         HPSlider.value = currentHP / maxHP;
+    }
+
+    private void Update()
+    {
         
     }
 
@@ -55,5 +61,23 @@ public class HPGauge : MonoBehaviour
         {
             currentHP -= DecreaseHPByTrap;
         }
+    }
+
+    //HP回復アイテムを取得した際にHPを回復させる関数
+    public void GetHPRecoverItem()
+    {
+        if (currentHP >= 0)
+        {
+            currentHP += IncreaseHP;
+
+            //最大HPを超えないようにcurrentHPを調整
+            if (currentHP > maxHP)
+            {
+                currentHP = maxHP;
+            }
+        }
+
+        //HPゲージ本体にHP状況を反映
+        HPSlider.value = currentHP / maxHP;
     }
 }

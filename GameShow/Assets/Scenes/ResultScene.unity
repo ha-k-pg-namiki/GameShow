@@ -3338,6 +3338,7 @@ GameObject:
   - component: {fileID: 1005531833}
   - component: {fileID: 1005531832}
   - component: {fileID: 1005531831}
+  - component: {fileID: 1005531835}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -3373,6 +3374,22 @@ MonoBehaviour:
   BestUI100k: {fileID: 251743624}
   BestUI1m: {fileID: 1588480961}
   BestUI10m: {fileID: 1411538879}
+  DistanceUI1: {fileID: 633439785}
+  DistanceUI10: {fileID: 1616336721}
+  DistanceUI100: {fileID: 907569640}
+  DistanceUI1k: {fileID: 824523414}
+  DistanceUI10k: {fileID: 1374997730}
+  DistanceUI100k: {fileID: 845104297}
+  DistanceUI1m: {fileID: 1422460142}
+  DistanceUI10m: {fileID: 125903605}
+  BestDistanceUI1: {fileID: 1765371248}
+  BestDistanceUI10: {fileID: 1253901764}
+  BestDistanceUI100: {fileID: 423591385}
+  BestDistanceUI1k: {fileID: 1401179953}
+  BestDistanceUI10k: {fileID: 1955915897}
+  BestDistanceUI100k: {fileID: 1531708532}
+  BestDistanceUI1m: {fileID: 582164773}
+  BestDistanceUI10m: {fileID: 844274226}
   EvaluationS: {fileID: 1704394457}
   EvaluationA: {fileID: 732964271}
   EvaluationB: {fileID: 911445085}
@@ -3431,6 +3448,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1005531835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005531830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66ca7e1209d07bd4c952a78da3fa9d4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Position: {x: 0, y: 0, z: 0}
+  Speed: 0
+  speedUpStep: 0
+  Rotation: {x: 0, y: 0, z: 0}
+  IsReverse: 0
+  Grounded: 0
+  jumpPower: 0
+  EventSystem: {fileID: 1005531830}
 --- !u!1 &1037067976
 GameObject:
   m_ObjectHideFlags: 0

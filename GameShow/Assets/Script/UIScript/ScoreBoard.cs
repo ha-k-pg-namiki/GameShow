@@ -181,10 +181,6 @@ public class ScoreBoard : MonoBehaviour
         DiscrimNumber();
 
         ChangeUI10m();
-
-        PlayerPrefs.SetInt("SCORE", score);
-        PlayerPrefs.Save();
-
     }
 
 
@@ -194,10 +190,6 @@ public class ScoreBoard : MonoBehaviour
     //    private set { this.score = value; }
     //}
 
-    
-
-
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -245,6 +237,19 @@ public class ScoreBoard : MonoBehaviour
             score = score - ScoreDown;
         }
 
+    }
+
+    //スコアUPアイテムを取得した際スコアを増加させる関数
+    public void GetScoreUpItem()
+    {
+        score += ScoreUP;
+    }
+
+    public int GetScore
+    {
+        get{
+            return score;
+        }
     }
 
 }

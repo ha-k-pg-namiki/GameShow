@@ -201,6 +201,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LoadTime: 1000
+  HPSlider: {fileID: 0}
+  EventSystem: {fileID: 431952762}
+  Player: {fileID: 431952762}
 --- !u!1 &623526215
 GameObject:
   m_ObjectHideFlags: 0
