@@ -3468,6 +3468,7 @@ MonoBehaviour:
   Grounded: 0
   jumpPower: 0
   EventSystem: {fileID: 1005531830}
+  MainCamera: {fileID: 1494603403}
 --- !u!1 &1037067976
 GameObject:
   m_ObjectHideFlags: 0

@@ -40,6 +40,8 @@ public class PlayerScript : MonoBehaviour
 
     //ヒエラルキーのEventSystem
     [SerializeField]private GameObject EventSystem;
+    //ヒエラルキーのCamera
+    [SerializeField] private GameObject MainCamera;
 
     //ScoreBoardスクリプトを使用するための変数
     private ScoreBoard ScoreBoardScript;
@@ -50,6 +52,14 @@ public class PlayerScript : MonoBehaviour
     private int PlayerDistance;
     //プレイヤーの座標を取得するための変数
     Transform PlayerTransform;
+    //カメラの座標を取得するための変数
+    Transform CameraTransform;
+    //カメラの回転角度の変更に必要な変数
+    private float RotationCameraZ;
+
+
+
+    Camera Camera;
 
     //======================================================
 
@@ -69,7 +79,14 @@ public class PlayerScript : MonoBehaviour
         PlayerDistance = 0;
         //プレイヤーの位置情報を取得
         PlayerTransform = this.transform;
+        //カメラの位置情報を取得
+        CameraTransform = MainCamera.transform;
 
+     
+
+
+        Camera = Camera.main;
+        CameraTransform = Camera.transform;
         //======================================================
 
     }
@@ -154,6 +171,23 @@ public class PlayerScript : MonoBehaviour
             {
                 IsReverse = false;
             }
+
+            //======================================================
+            //coding by namiki
+            //CameraTransform.localPosition = new Vector3(
+            //    CameraTransform.localPosition.x,
+            //    CameraTransform.localPosition.y,
+            //    CameraTransform.localPosition.z);
+            //CameraTransform.localEulerAngles = new Vector3(
+            //    CameraTransform.localEulerAngles.x,
+            //    CameraTransform.localEulerAngles.y,
+            //    CameraTransform.localEulerAngles.z);
+
+            RotationCameraZ += 180.0f;
+            CameraTransform.localRotation = Quaternion.Euler(0.0f,-90.0f,RotationCameraZ);
+            //======================================================
+
+
         }
 
 
