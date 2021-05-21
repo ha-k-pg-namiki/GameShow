@@ -56,8 +56,8 @@ public class PlayerScript : MonoBehaviour
     Transform CameraTransform;
     //カメラの回転角度の変更に必要な変数
     private float RotationCameraZ;
-
-
+    //表裏反転の状態をInsideOutScriptに伝えるための変数
+    private int InsideOutNumber;
 
     Camera Camera;
 
@@ -81,10 +81,9 @@ public class PlayerScript : MonoBehaviour
         PlayerTransform = this.transform;
         //カメラの位置情報を取得
         CameraTransform = MainCamera.transform;
-
-     
-
-
+        //初期化
+        InsideOutNumber = 0;
+        //カメラとカメラのtransformを変数に代入
         Camera = Camera.main;
         CameraTransform = Camera.transform;
         //======================================================
@@ -101,6 +100,15 @@ public class PlayerScript : MonoBehaviour
         Vector3 PlayerPos = PlayerTransform.position;
         //プレイヤーのZ軸座標をint型に変換し、PlayerDistance変数に代入
         PlayerDistance = (int)PlayerPos.z;
+        //InsideOutNumberの状態を常に更新
+        if (InsideOutNumber == 0)
+        {
+            InsideOutNumber = 0;
+        }
+        else
+        {
+            InsideOutNumber = 1;
+        }
 
         //======================================================
     }
@@ -174,17 +182,19 @@ public class PlayerScript : MonoBehaviour
 
             //======================================================
             //coding by namiki
-            //CameraTransform.localPosition = new Vector3(
-            //    CameraTransform.localPosition.x,
-            //    CameraTransform.localPosition.y,
-            //    CameraTransform.localPosition.z);
-            //CameraTransform.localEulerAngles = new Vector3(
-            //    CameraTransform.localEulerAngles.x,
-            //    CameraTransform.localEulerAngles.y,
-            //    CameraTransform.localEulerAngles.z);
-
+            //反転した場合にPlayerの子となるカメラも反転してしまうため、カメラの位置を対応した形にする
             RotationCameraZ += 180.0f;
             CameraTransform.localRotation = Quaternion.Euler(0.0f,-90.0f,RotationCameraZ);
+
+            //反転した場合に表裏反転した状態に更新する
+            if (InsideOutNumber == 0)
+            {
+                InsideOutNumber = 1;
+            }
+            else
+            {
+                InsideOutNumber = 0;
+            }
             //======================================================
 
 
@@ -250,11 +260,22 @@ public class PlayerScript : MonoBehaviour
 
     //======================================================
     //coding by namiki
+    
+    //リザルトシーンに距離を伝えるためのgetter
     public int GetDistance
     {
         get
         {
             return PlayerDistance;
+        }
+    }
+
+    //表裏反転の状態をInsideOutScriptに伝えるためのgetter
+    public int GetInsideOutNumber
+    {
+        get
+        {
+            return InsideOutNumber;
         }
     }
     //======================================================

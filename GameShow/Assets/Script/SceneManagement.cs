@@ -7,12 +7,14 @@ using UnityEngine.SceneManagement;
 public class SceneManagement : MonoBehaviour
 {
     //ロードシーン遷移までの時間
-    [SerializeField] private int LoadTime;
+    [SerializeField] private float LoadTime;
+    //ゲームオーバーシーン遷移までの時間
+    [SerializeField] private float GameOverTime;
 
     //HPゲージ本体
     [SerializeField] private Slider HPSlider;
 
-    int Timer;
+    float Timer;
 
     //ヒエラルキーのEventSystem
     [SerializeField] private GameObject EventSystem;
@@ -44,7 +46,7 @@ public class SceneManagement : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "LoadScene")
         {
-            Timer += 1;
+            Timer += Time.deltaTime;
 
             if (Timer == LoadTime)
             {
@@ -67,7 +69,19 @@ public class SceneManagement : MonoBehaviour
                 PlayerPrefs.SetInt("DISTANCE", Distance);
                 PlayerPrefs.Save();
 
+                SceneManager.LoadScene("GameOver");
+            }
+        }
+
+        if (SceneManager.GetActiveScene().name == "GameOver")
+        {
+            Timer +=Time.deltaTime;
+
+            if (Timer >= GameOverTime)
+            {
                 SceneManager.LoadScene("ResultScene");
+
+                Timer = 0;
             }
         }
     }
@@ -76,15 +90,21 @@ public class SceneManagement : MonoBehaviour
     public void OnClickGoingGameSceneButton()
     {
         SceneManager.LoadScene("LoadScene");
+
+        Time.timeScale = 1.0f;
     }
 
     public void OnClickGoingTitleSceneButton()
     {
         SceneManager.LoadScene("TitleScene");
+
+        Time.timeScale = 1.0f;
     }
 
     public void OnClickGoingLoadSceneButton()
     {
         SceneManager.LoadScene("LoadScene");
+
+        Time.timeScale = 1.0f;
     }
 }
