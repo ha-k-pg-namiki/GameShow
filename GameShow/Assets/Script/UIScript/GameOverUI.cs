@@ -50,13 +50,13 @@ public class GameOverUI : MonoBehaviour
     {
         ChangeNumber = Random.Range(1, 100);
 
-        if (ChangeNumber % 2 == 1 || ChangeNumber % 3 == 2 || ChangeNumber % 5 == 3)
+        if (ChangeNumber % 2 == 1 || ChangeNumber % 4 == 0 || ChangeNumber % 3 == 2 || ChangeNumber % 5 == 3 || ChangeNumber % 7 == 6)
         {
             sprite = Resources.Load<Sprite>("がめお");
             Image = GameOverUIImage.GetComponent<Image>();
             Image.sprite = sprite;
         }
-        else if (ChangeNumber % 2 == 0)
+        else
         {
             sprite = Resources.Load<Sprite>("がめおくろ");
             Image = GameOverUIImage.GetComponent<Image>();
