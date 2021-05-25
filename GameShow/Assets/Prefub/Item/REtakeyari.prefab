@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2739834030432714675}
   m_Layer: 0
   m_Name: REtakeyari
-  m_TagString: Untagged
+  m_TagString: TrapObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 2334098784237833317}
   m_Layer: 0
   m_Name: pCylinder1_pCylinder2_pCylinder3_pCylinder4_pCylinder5
-  m_TagString: Untagged
+  m_TagString: TrapObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

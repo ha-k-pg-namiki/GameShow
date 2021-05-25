@@ -48,7 +48,7 @@ public class SceneManagement : MonoBehaviour
         {
             Timer += Time.deltaTime;
 
-            if (Timer == LoadTime)
+            if (Timer > LoadTime)
             {
                 SceneManager.LoadScene("GameScene");
 

@@ -177,7 +177,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 13b19243f5de6c547a44196c2ddbd703, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d4cc208a3f0e501479ed3dc94e508369, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -896,6 +896,7 @@ GameObject:
   - component: {fileID: 1883218680}
   - component: {fileID: 1883218679}
   - component: {fileID: 1883218678}
+  - component: {fileID: 1883218682}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -968,3 +969,16 @@ Transform:
   m_Father: {fileID: 1687001387}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1883218682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883218677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d948d49e721b48144935ca05f7dff04b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameOverUIImage: {fileID: 17716859}

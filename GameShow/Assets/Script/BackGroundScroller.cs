@@ -4,58 +4,47 @@ using UnityEngine;
 
 public class BackGroundScroller : MonoBehaviour
 {
+    //背景のスクロールするスピード
     [SerializeField]private float Speed;
-    private int NumberOfSprite = 2;
-    private float TexW;
-
-    private float Timer;
-
-    private Camera Camera;
+    //スクロールする背景
     [SerializeField] private GameObject BackGround;
-    RectTransform PosBG;
-
-    private float PosXIdou = -5.0f;
+    //PauseスクリプトのアタッチされたEventSystem
+    [SerializeField] private GameObject EventSystem;
+    //Pauseスクリプト
+    private Pause Pause;
+    //Pauseスクリプトから取得した現在のPauseの状況を反映するための変数
+    private int PauseNumber;
 
     // Start is called before the first frame update
     void Start()
     {
-        //    GameObject MainCamera = GameObject.Find("Main Camera");
-        //    Camera = MainCamera.GetComponent<Camera>();
+        //EventSystemのPauseスクリプトを取得
+        Pause = EventSystem.GetComponent<Pause>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (gameObject.tag == "ChangeGravity")
-        //{
-        //    Transform myTransform = this.transform;
-        //    transform.position = new Vector3(myTransform.position.x * -1.0f, myTransform.position.y, myTransform.position.z);
-        //}
-        //PosBG.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-
         Transform myTransform = this.transform;
-        //BackGround.GetComponent<RectTransform>().anchoredPosition =
-        //    new Vector3(myTransform.position.x, myTransform.position.y, myTransform.position.z + PosXIdou);
+        //PauseスクリプトのGetPauseStateから値を取得し、反映
+        PauseNumber = Pause.GetPauseState;
 
-        myTransform.localPosition = 
+        //もしPauseがOnの場合は背景を移動、Offの場合は静止させる
+        if (PauseNumber == 0)
+        {
+            myTransform.localPosition =
             new Vector3(myTransform.localPosition.x + (Speed * -1.0f), myTransform.localPosition.y, myTransform.localPosition.z);
+        }
+        else
+        {
+            myTransform.localPosition =
+            new Vector3(myTransform.localPosition.x, myTransform.localPosition.y, myTransform.localPosition.z);
+        }
 
-        ////Vector3 TopLeftPos = Camera.ScreenToWorldPoint(Vector3.zero);
-
+        //背景が左端まで移動した場合は次の背景の右に移動させる
         if (myTransform.localPosition.x < -1919.0)
         {
             BackGround.GetComponent<RectTransform>().anchoredPosition = new Vector3(1919.0f, 0.0f, 0.0f);
         }
     }
-
-    //private void OnBecameInvisible()
-    //{
-    //    Timer += Time.deltaTime;
-
-    //    if (Timer > 3.0f)
-    //    {
-    //        Transform myTransform = this.transform;
-    //        transform.position = new Vector3(myTransform.position.x + 1920.0f * NumberOfSprite, 0.0f, 0.0f);
-    //    }
-    //}
 }

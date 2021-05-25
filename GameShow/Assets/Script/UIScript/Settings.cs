@@ -25,12 +25,9 @@ public class Settings : MonoBehaviour
     [SerializeField] private GameObject    DisplaySetting;
     [SerializeField] private GameObject       HelpSetting;
 
-
     private Image Image;
 
     private Sprite sprite;
-
-    //private GameObject SettingsInstance = null;
 
     //switch文でマジックナンバーを消すために使用する
     private enum SettingsState
@@ -138,7 +135,6 @@ public class Settings : MonoBehaviour
         }
     }
 
-    
     //設定UIをボタンで開くための関数
     public void OnClickOpenButton()
     {

@@ -12,9 +12,7 @@ public class Title : MonoBehaviour
     //点滅速度
     private float FlashingSpeed = 2.5f;
 
-
     private float ChangeTime;
-    private Image image;
 
     // Start is called before the first frame update
     void Start()
@@ -29,5 +27,12 @@ public class Title : MonoBehaviour
         //アルファ値のみを変更
         StartButtonImage.GetComponent<Image>().color = new Color(255.0f, 255.0f, 255.0f, Mathf.Sin(ChangeTime));
         StartButtonEffectImage.GetComponent<Image>().color = new Color(255.0f, 255.0f, 255.0f, Mathf.Sin(ChangeTime));
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+
+            Debug.Log("ゲームを終了しました");
+        }
     }
 }

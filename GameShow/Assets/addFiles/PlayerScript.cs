@@ -48,14 +48,14 @@ public class PlayerScript : MonoBehaviour
     //HPGaugeスクリプトを使用するための変数
     private HPGauge HPGaugeScript;
 
-    //リザルトシーンで使用する移動距離を計測する変数
-    private int PlayerDistance;
     //プレイヤーの座標を取得するための変数
     Transform PlayerTransform;
     //カメラの座標を取得するための変数
     Transform CameraTransform;
     //カメラの回転角度の変更に必要な変数
     private float RotationCameraZ;
+    //リザルトシーンで使用する移動距離を計測する変数
+    private int PlayerDistance;
     //表裏反転の状態をInsideOutScriptに伝えるための変数
     private int InsideOutNumber;
 
@@ -245,9 +245,23 @@ public class PlayerScript : MonoBehaviour
         //======================================================
 
     }
+    //======================================================
+    //coding by namiki
+
+    //衝突しないオブジェクトとの当たり判定
+    private void OnTriggerEnter(Collider collider)
+    {
+        //Trapタグを持つオブジェクトに衝突した際にGetScoreUpItem関数を行う
+        if (collider.gameObject.tag == "TrapObj")
+        {
+            HPGaugeScript.GetTrap();
+        }
+    }
+
+    //======================================================
 
 
-   private void SpeedUpStep(int step)
+    private void SpeedUpStep(int step)
     {
         switch(step)
         {

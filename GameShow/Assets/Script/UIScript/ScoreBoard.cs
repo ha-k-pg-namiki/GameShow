@@ -28,8 +28,6 @@ public class ScoreBoard : MonoBehaviour
     [Header("スコア減少アイテムを取得した際の減少スコア")]
     [SerializeField] private int ScoreDown;
 
-
-
     private Image Image;
 
     private Sprite sprite;
@@ -39,7 +37,6 @@ public class ScoreBoard : MonoBehaviour
     private int CalcScore;
 
     private int Number;
-
 
     //スコアを各桁ごとに分ける関数
     private void DiscrimNumber()
@@ -183,13 +180,6 @@ public class ScoreBoard : MonoBehaviour
         ChangeUI10m();
     }
 
-
-    //public int ScoreProp
-    //{
-    //    get { return this.score; }
-    //    private set { this.score = value; }
-    //}
-
     // Start is called before the first frame update
     void Start()
     {
@@ -200,7 +190,6 @@ public class ScoreBoard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (Pause.activeSelf == true)
         {
             score += 0;
@@ -210,17 +199,7 @@ public class ScoreBoard : MonoBehaviour
             score += 1;
         }
 
-        //text.text = "SCORE:" + score;
-
         DiscrimAndChangeUI();
-
-
-        
-        //if (Input.GetKey(KeyCode.P))
-        //{
-        //    PlayerPrefs.DeleteKey("SCORE");
-        //    score = 0;
-        //}
     }
 
     private void OnTriggerEnter(Collider collider)
@@ -236,7 +215,6 @@ public class ScoreBoard : MonoBehaviour
         {
             score = score - ScoreDown;
         }
-
     }
 
     //スコアUPアイテムを取得した際スコアを増加させる関数
@@ -251,5 +229,4 @@ public class ScoreBoard : MonoBehaviour
             return score;
         }
     }
-
 }

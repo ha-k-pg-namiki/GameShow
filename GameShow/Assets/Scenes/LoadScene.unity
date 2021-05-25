@@ -274,7 +274,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4838ed95eb46734191dc21c5bafdc3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LoadTime: 1000
+  LoadTime: 5
+  GameOverTime: 0
   HPSlider: {fileID: 1082621475}
   EventSystem: {fileID: 431952762}
   Player: {fileID: 547642147}

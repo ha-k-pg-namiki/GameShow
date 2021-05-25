@@ -54,15 +54,6 @@ public class HPGauge : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider collider)
-    {
-        //Trapタグをもつオブジェクトに接触した場合、HPを一定量減少させる
-        if (this.gameObject.CompareTag("Trap"))
-        {
-            currentHP -= DecreaseHPByTrap;
-        }
-    }
-
     //HP回復アイテムを取得した際にHPを回復させる関数
     public void GetHPRecoverItem()
     {
@@ -74,6 +65,24 @@ public class HPGauge : MonoBehaviour
             if (currentHP > maxHP)
             {
                 currentHP = maxHP;
+            }
+        }
+
+        //HPゲージ本体にHP状況を反映
+        HPSlider.value = currentHP / maxHP;
+    }
+
+    //Trapを取得した際にHPを減少させる関数
+    public void GetTrap()
+    {
+        if (currentHP >= 0)
+        {
+            currentHP += (DecreaseHPByTrap * -1.0f);
+
+            //最低HPを超えないようにcurrentHPを調整
+            if (currentHP < 0.0f)
+            {
+                currentHP = 0.0f;
             }
         }
 

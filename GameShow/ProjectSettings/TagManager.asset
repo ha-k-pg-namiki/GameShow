@@ -10,6 +10,8 @@ TagManager:
   - SpeedDown
   - ScoreUp
   - HPRecover
+  - TrapObj
+  - Trap
   layers:
   - Default
   - TransparentFX

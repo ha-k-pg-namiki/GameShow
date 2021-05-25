@@ -12,6 +12,8 @@ public class Pause : MonoBehaviour
     [SerializeField] private GameObject PauseOpen;
     //ポーズしたときに表示するPauseUI
     [SerializeField] private GameObject PausePanel;
+    //背景を停止させるために使用する変数
+    private int PauseStateNumber;
 
     //ボタンを押すことでゲームプレイ用UIを非表示にし、ポーズUIを表示する
     //その際、ゲームを一時中断する
@@ -24,6 +26,8 @@ public class Pause : MonoBehaviour
 
         PausePanel.SetActive(true);
 
+        PauseStateNumber = 1;
+
         Time.timeScale = 0.0f;
     }
 
@@ -35,6 +39,8 @@ public class Pause : MonoBehaviour
         InsideOutPanel.SetActive(true);
 
         PausePanel.SetActive(false);
+
+        PauseStateNumber = 0;
 
         Time.timeScale = 1.0f;
     }
@@ -50,4 +56,13 @@ public class Pause : MonoBehaviour
     {
         
     }
+    //背景の状態を受け渡すゲッター
+    public int GetPauseState
+    {
+        get
+        {
+            return PauseStateNumber;
+        }
+    }
+
 }

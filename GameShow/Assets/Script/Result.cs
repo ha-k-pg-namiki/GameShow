@@ -682,8 +682,6 @@ public class Result : MonoBehaviour
     }
 
 
-
-
     //各UIを表示していくコルーチン
     private IEnumerator ResultCor()
     {
@@ -742,7 +740,6 @@ public class Result : MonoBehaviour
     }
 
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -775,16 +772,8 @@ public class Result : MonoBehaviour
             PlayerPrefs.Save();
         }
 
-        Score = 23456;
-        BestScore = 234567;
-        Distance = 987654;
-        BestDistance = 9876543;
-
         StartCoroutine("ResultCor");
     }
-
-
-
 
     //クリックするとゲームシーンに移動する関数
     public void OnClickNextGameButton()

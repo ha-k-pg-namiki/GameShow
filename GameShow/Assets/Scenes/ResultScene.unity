@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 36657201}
   - component: {fileID: 36657200}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: StageClearBoard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.29803923}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -969,7 +969,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &460513685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1609,6 +1609,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1005531836}
+        m_MethodName: OnClickCloseSE
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &672111654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1778,7 +1789,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &732964272
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2499,6 +2510,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1005531836}
+        m_MethodName: OnClickOpenSE
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &802597747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3091,7 +3113,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &911445086
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3339,6 +3361,7 @@ GameObject:
   - component: {fileID: 1005531832}
   - component: {fileID: 1005531831}
   - component: {fileID: 1005531835}
+  - component: {fileID: 1005531836}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -3469,6 +3492,22 @@ MonoBehaviour:
   jumpPower: 0
   EventSystem: {fileID: 1005531830}
   MainCamera: {fileID: 1494603403}
+--- !u!114 &1005531836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005531830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20c7d66cf3dbac64180f2e817e122273, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 3991be012fbd14843b7c28bea8587cad, type: 2}
+  SEAudioSource: {fileID: 1494603408}
+  SE1: {fileID: 8300000, guid: 4f34e688f08151b47a35f70aefc435b9, type: 3}
+  SE2: {fileID: 8300000, guid: 4338b73fc93f4cb4fbb262666bc04218, type: 3}
 --- !u!1 &1037067976
 GameObject:
   m_ObjectHideFlags: 0
@@ -5962,7 +6001,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1704394458
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7003,7 +7042,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2116702503
 RectTransform:
   m_ObjectHideFlags: 0
