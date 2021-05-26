@@ -5,7 +5,7 @@ using UnityEngine;
 public class CreateBG : MonoBehaviour
 {
     //背景の幅
-    private int BGSize = 50;
+    private int BGSize = 100;
 
     private int BGIndex;
 
@@ -71,7 +71,7 @@ public class CreateBG : MonoBehaviour
     {
         int NextBG = Random.Range(0, BGnum.Length);
 
-        GameObject BGObject = (GameObject)Instantiate(BGnum[NextBG], new Vector3(-20, 10, index * BGSize), Quaternion.identity);
+        GameObject BGObject = (GameObject)Instantiate(BGnum[NextBG], new Vector3(-20, 0, index * BGSize), Quaternion.identity);
 
         return BGObject;
     }
