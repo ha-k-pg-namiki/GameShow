@@ -59,8 +59,6 @@ public class PlayerScript : MonoBehaviour
     //表裏反転の状態をInsideOutScriptに伝えるための変数
     private int InsideOutNumber;
 
-    Camera Camera;
-
     //======================================================
 
     // Start is called before the first frame update
@@ -83,9 +81,6 @@ public class PlayerScript : MonoBehaviour
         CameraTransform = MainCamera.transform;
         //初期化
         InsideOutNumber = 0;
-        //カメラとカメラのtransformを変数に代入
-        Camera = Camera.main;
-        CameraTransform = Camera.transform;
         //======================================================
 
     }
@@ -127,7 +122,12 @@ public class PlayerScript : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Space))//  もし、スペースキーがおされたなら、  
                 {
                     Grounded = false;//  Groundedをfalseにする
-                    rb.AddForce(Vector3.up * jumpPower);//  上にJumpPower分力をかける
+                    //rb.AddForce(Vector3.up * jumpPower);//  上にJumpPower分力をかける
+
+                    //======================================================
+                    //coding by namiki
+                    rb.AddForce(new Vector3(0.0f, jumpPower, 0.0f), ForceMode.Impulse);
+                    //======================================================
                 }
             }
         }
@@ -142,7 +142,12 @@ public class PlayerScript : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Space))//  もし、スペースキーがおされたなら、  
                 {
                     Grounded = false;//  Groundedをfalseにする
-                    rb.AddForce(Vector3.up * -jumpPower);//  上にJumpPower分力をかける
+                    //rb.AddForce(Vector3.up * -jumpPower);//  上にJumpPower分力をかける
+
+                    //======================================================
+                    //coding by namiki
+                    rb.AddForce(new Vector3(0.0f, jumpPower, 0.0f), ForceMode.Impulse);
+                    //======================================================
                 }
             }
         }
@@ -182,6 +187,9 @@ public class PlayerScript : MonoBehaviour
 
             //======================================================
             //coding by namiki
+            //スタックしないように反転した際に上方に力を加える
+            rb.AddForce(new Vector3(0.0f, 30.0f, -5.0f), ForceMode.Impulse);
+
             //反転した場合にPlayerの子となるカメラも反転してしまうため、カメラの位置を対応した形にする
             RotationCameraZ += 180.0f;
             CameraTransform.localRotation = Quaternion.Euler(0.0f,-90.0f,RotationCameraZ);
