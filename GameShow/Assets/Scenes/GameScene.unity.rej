@@ -1,0 +1,17 @@
+diff a/GameShow/Assets/Scenes/GameScene.unity b/GameShow/Assets/Scenes/GameScene.unity	(rejected hunks)
+@@ -166,11 +166,15 @@
+      - target: {fileID: 3842170153821913358, guid: 8e16421867ea3004692ea933be3bc86b,
+          type: 3}
+        propertyPath: m_RootOrder
+++<<<<<<< HEAD
+ +<<<<<<< HEAD
+ +      value: 6
+ +=======
+ +      value: 7
+ +>>>>>>> develop
+++=======
++       value: 8
+++>>>>>>> parent of 73a4a33... 旧プレイヤーオブジェクト削除、アイテムファイル削除
+        objectReference: {fileID: 0}
+      - target: {fileID: 3842170153821913358, guid: 8e16421867ea3004692ea933be3bc86b,
+          type: 3}
