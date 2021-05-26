@@ -1,4 +1,4 @@
-﻿%YAML 1.1
+%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!29 &1
 OcclusionCullingSettings:
@@ -2658,7 +2658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InsideOutUI: {fileID: 780593821}
-  Player: {fileID: 1416685646}
+  Player: {fileID: 475819207}
 --- !u!114 &532968495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2675,7 +2675,7 @@ MonoBehaviour:
   GameOverTime: 0
   HPSlider: {fileID: 1271561700}
   EventSystem: {fileID: 532968484}
-  Player: {fileID: 1416685646}
+  Player: {fileID: 475819207}
 --- !u!114 &532968496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4401,7 +4401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 843d8db08493c1e419cec2dcd3658c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 1416685648}
+  Target: {fileID: 475819210}
   Stagenum:
   - {fileID: 6858426532574375937, guid: 8e16421867ea3004692ea933be3bc86b, type: 3}
   - {fileID: 7423397220801961358, guid: dd97b85886ba88c4dac04e1392a3d3a3, type: 3}
@@ -4470,6 +4470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b71baf7f2b674f644a37f06e08c3622a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Target: {fileID: 475819210}
   BGnum:
   - {fileID: 6343558552007777987, guid: 113207381c79f8447a0eee7baedb0713, type: 3}
   FirstBGIndex: 1
