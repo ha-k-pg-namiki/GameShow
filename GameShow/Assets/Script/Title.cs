@@ -32,7 +32,7 @@ public class Title : MonoBehaviour
         {
             Application.Quit();
 
-            Debug.Log("ゲームを終了しました");
+            //Debug.Log("ゲームを終了しました");
         }
     }
 }
