@@ -81,6 +81,7 @@ public class PlayerScript : MonoBehaviour
         CameraTransform = MainCamera.transform;
         //初期化
         InsideOutNumber = 0;
+        speedUpStep = 1;
         //======================================================
 
     }
@@ -105,13 +106,13 @@ public class PlayerScript : MonoBehaviour
             InsideOutNumber = 1;
         }
 
+        if (PlayerPos.x > 1.0f || PlayerPos.x < -1.0f)
+        {
+            PlayerTransform.transform.position = new Vector3(0.0f, PlayerPos.y, PlayerPos.z);
+        }
+
         //======================================================
-    }
 
-    private void FixedUpdate()
-    {
-
-        
         //反転していない重力
         if (IsReverse == false)
         {
@@ -146,15 +147,24 @@ public class PlayerScript : MonoBehaviour
 
                     //======================================================
                     //coding by namiki
-                    rb.AddForce(new Vector3(0.0f, jumpPower, 0.0f), ForceMode.Impulse);
+                    rb.AddForce(new Vector3(0.0f, -jumpPower, 0.0f), ForceMode.Impulse);
                     //======================================================
                 }
             }
         }
 
+    }
+
+    private void FixedUpdate()
+    {
         SpeedUpStep(speedUpStep);
-        
-        transform.Translate(Position.x, Position.y, Position.z += Speed);
+
+        //transform.Translate(Position.x, Position.y, Position.z += Speed);
+
+        //プレイヤーの位置情報を座標に変換、更新
+        Vector3 PlayerPos = PlayerTransform.position;
+
+        transform.position = new Vector3(PlayerPos.x, PlayerPos.y, PlayerPos.z + Speed);
 
         //Position.z += Speed;
 
@@ -187,8 +197,6 @@ public class PlayerScript : MonoBehaviour
 
             //======================================================
             //coding by namiki
-            //スタックしないように反転した際に上方に力を加える
-            rb.AddForce(new Vector3(0.0f, 30.0f, -5.0f), ForceMode.Impulse);
 
             //反転した場合にPlayerの子となるカメラも反転してしまうため、カメラの位置を対応した形にする
             RotationCameraZ += 180.0f;
@@ -223,36 +231,24 @@ public class PlayerScript : MonoBehaviour
             
 
         }
-
-
-        if (collision.gameObject.tag == "SpeedUp")
+        else 
         {
-            speedUpStep = 2;
+            Grounded = false;
         }
 
 
-        if (collision.gameObject.tag == "SpeedDown")
-        {
-            speedUpStep = 1;
-        }
+        //if (collision.gameObject.tag == "SpeedUp")
+        //{
+        //    speedUpStep = 2;
+        //}
 
-        //======================================================
-        //coding by namiki
-        
-        //HPRecoverタグを持つオブジェクトに衝突した際にGetHPRecoverItem関数を行う
-        if (collision.gameObject.tag == "HPRecover")
-        {
-            HPGaugeScript.GetHPRecoverItem();
-        }
 
-        //ScoreUpタグを持つオブジェクトに衝突した際にGetScoreUpItem関数を行う
-        if (collision.gameObject.tag == "ScoreUp")
-        {
-            ScoreBoardScript.GetScoreUpItem();
-        }
-        //======================================================
-
+        //if (collision.gameObject.tag == "SpeedDown")
+        //{
+        //    speedUpStep = 1;
+        //}
     }
+
     //======================================================
     //coding by namiki
 
@@ -260,9 +256,42 @@ public class PlayerScript : MonoBehaviour
     private void OnTriggerEnter(Collider collider)
     {
         //Trapタグを持つオブジェクトに衝突した際にGetScoreUpItem関数を行う
-        if (collider.gameObject.tag == "TrapObj")
+        if (collider.CompareTag("TrapObj"))
         {
             HPGaugeScript.GetTrap();
+        }
+
+        //HPRecoverタグを持つオブジェクトに衝突した際にGetHPRecoverItem関数を行う
+        if (collider.CompareTag("HPRecover"))
+        {
+            HPGaugeScript.GetHPRecoverItem();
+        }
+
+        //ScoreUpタグを持つオブジェクトに衝突した際にGetScoreUpItem関数を行う
+        if (collider.CompareTag("ScoreUp"))
+        {
+            ScoreBoardScript.GetScoreUpItem();
+        }
+
+        //SpeedUpタグを持つオブジェクトに衝突した際にspeedUpStepを1増加させる
+        if (collider.CompareTag("SpeedUp"))
+        {
+            speedUpStep += 1;
+
+            if (speedUpStep > 4)
+            {
+                speedUpStep = 4;
+            }
+        }
+
+        if (collider.CompareTag("SpeedDown"))
+        {
+            speedUpStep -= 1;
+
+            if (speedUpStep < 1)
+            {
+                speedUpStep = 1;
+            }
         }
     }
 
@@ -273,10 +302,10 @@ public class PlayerScript : MonoBehaviour
     {
         switch(step)
         {
-            case 1: Speed = 0.0002f; break;
-            case 2: Speed = 0.0004f; break;
-            case 3: Speed = 0.0008f; break;
-            case 4: Speed = 0.001f; break;
+            case 1: Speed = 0.3f; break;
+            case 2: Speed = 0.4f; break;
+            case 3: Speed = 0.5f; break;
+            case 4: Speed = 0.6f; break;
         }
     }
 

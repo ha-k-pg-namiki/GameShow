@@ -19,12 +19,12 @@ public class JumpPad : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collider)
     {
         //もしプレイヤータグのオブジェクトに触れたら上に押し上げる
-        if (collision.gameObject.tag == "Player")
+        if (collider.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<Rigidbody>().AddForce(0, JumpForce, 0, ForceMode.Impulse);
+            collider.gameObject.GetComponent<Rigidbody>().AddForce(0, JumpForce, 0, ForceMode.Impulse);
         }
     }
 }

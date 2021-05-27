@@ -16,12 +16,26 @@ public class DeletScript : MonoBehaviour
         
     }
 
-    
-    private void OnCollisionEnter(Collision collision)
+
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.tag == "Player")//  もしGroundというタグがついたオブジェクトに触れたら、
+    //    {
+    //        Destroy(this.gameObject);
+    //    }
+    //}
+
+    //======================================================
+    //coding by namiki
+
+    //Playerタグの付いたオブジェクトがすり抜けた瞬間にこのスクリプトがアタッチされたオブジェクトをヒエラルキーから削除する
+    private void OnTriggerEnter(Collider collider)
     {
-        if (collision.gameObject.tag == "Player")//  もしGroundというタグがついたオブジェクトに触れたら、
+        if (collider.CompareTag("Player"))
         {
             Destroy(this.gameObject);
         }
     }
-    }
+
+    //======================================================
+}
