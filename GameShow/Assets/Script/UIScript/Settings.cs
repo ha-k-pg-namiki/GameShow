@@ -120,6 +120,8 @@ public class Settings : MonoBehaviour
                 Image = HelpButton.GetComponent<Image>();
                 Image.sprite = sprite;
 
+                HelpSetting.SetActive(true);
+
                 break;
             //何かあった場合には設定画面を閉じてリセットする
             default:
@@ -127,8 +129,6 @@ public class Settings : MonoBehaviour
                 state = SettingsState.Volume;
                 SettingsBoard.SetActive(false);
                 OpenSettingsButton.SetActive(true);
-
-                HelpSetting.SetActive(true);
 
                 break;
 

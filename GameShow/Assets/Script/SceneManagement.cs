@@ -44,7 +44,17 @@ public class SceneManagement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SceneManager.GetActiveScene().name == "LoadScene")
+        if (SceneManager.GetActiveScene().name == "TitleScene")
+        {
+            if (Input.anyKey && !Input.GetKey(KeyCode.Escape))
+            {
+                SceneManager.LoadScene("LoadScene");
+
+                Time.timeScale = 1.0f;
+            }
+        }
+
+            if (SceneManager.GetActiveScene().name == "LoadScene")
         {
             Timer += Time.deltaTime;
 
